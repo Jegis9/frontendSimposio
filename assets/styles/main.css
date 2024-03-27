@@ -200,3 +200,66 @@ label,p,.titleas{
 ol{
     color: antiquewhite;
 }
+
+
+  /* Estilos para el registro de pagos */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Muli', sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: rgba(75, 0, 130, 0.1);
+    border-radius: 8px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    margin-bottom: 20px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #4b0082;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #6a5acd;
+}
+
+input[type="text"],
+input[type="number"] {
+    border-radius: 10px;
+}

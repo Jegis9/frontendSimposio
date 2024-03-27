@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="assets/styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
 
@@ -37,9 +38,9 @@
     <h1>Detalle de Pago</h1>
     <div class="flex justify-center">
     
-    <form id="payment-form" class="w-full max-w-lg bg-indigo-lightest-10" style="padding: 50px;">
+    <form id="payment-form" class="w-full max-w-lg css.main/styles" style="padding: 50px;">
         <label for="carnet">Número de Carnet:</label>
-        <input type="text" id="carnet" name="carnet" required><br>
+        <input type="text" id="carnet" name="carnet" ><br>
         <label for="merchandise">Merchandising:</label>
         <select id="merchandise" name="merchandise">
             <option value="none">Selecciona un artículo</option>
@@ -48,7 +49,7 @@
             <option value="gorra">Gorra</option>
         </select><br>
         <label for="quantity">Cantidad:</label>
-        <input type="number" id="quantity" name="quantity" min="1" max="10" required><br>
+        <input type="number" id="quantity" name="quantity" min="1" max="10" ><br>
         <button type="button" id="add-item" class="button bg-indigo indigo-lightest">Agregar</button>
 
         <div id="pdf-content">
@@ -62,76 +63,7 @@
         <button class="button-lg bg-indigo indigo-lightest fw-300 fs-s3 br-l-0" id="download-pdf">Registrar</button>
     </form>
 </div>
-    <script>
-        var totalGeneral = 0;
-        var items = [];
-
-        document.getElementById('add-item').addEventListener('click', function() {
-            var merchandise = document.getElementById('merchandise').value;
-            var quantity = parseInt(document.getElementById('quantity').value);
-            var itemName = '';
-            var price = 0;
-            
-            switch (merchandise) {
-                case 'sombrero':
-                    itemName = 'Sombrero';
-                    price = 100;
-                    break;
-                case 'vaso':
-                    itemName = 'Vaso';
-                    price = 50;
-                    break;
-                case 'gorra':
-                    itemName = 'Gorra';
-                    price = 75;
-                    break;
-                default:
-                    break;
-            }
-            
-            var total = price * quantity;
-            totalGeneral += total;
-
-            items.push({ itemName: itemName, quantity: quantity, price: price });
-
-            var listItem = document.createElement('li');
-            listItem.textContent = itemName + ' - Cantidad: ' + quantity + ' - Precio Unitario: Q' + price + ' - Total: Q' + total;
-            
-            var deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Eliminar';
-            deleteButton.addEventListener('click', function() {
-                totalGeneral -= total;
-                items = items.filter(item => item.itemName !== itemName);
-                listItem.remove();
-                document.getElementById('total').textContent = 'Q' + totalGeneral;
-            });
-            listItem.appendChild(deleteButton);
-
-            document.getElementById('selected-items').appendChild(listItem);
-            document.getElementById('total').textContent = 'Q' + totalGeneral;
-        });
-
-        document.getElementById('download-pdf').addEventListener('click', function() {
-            var docDefinition = {
-                content: [
-                    { text: 'Detalle de Pago', style: 'header' },
-             
-                    { text: 'Artículos Seleccionados:', style: 'subheader' },
-                    {
-                        ul: items.map(item => `${item.itemName} - Cantidad: ${item.quantity} - Precio Unitario: Q${item.price} - Total: Q${item.price * item.quantity}`)
-                    },
-                    { text: `Total General: Q${totalGeneral}`, style: 'total' }
-                ],
-                styles: {
-                    header: { fontSize: 18, bold: true, margin: [0, 0, 0, 10] },
-                    subheader: { fontSize: 16, bold: true, margin: [0, 10, 0, 5] },
-                    total: { fontSize: 14, bold: true, margin: [0, 10, 0, 0] }
-                }
-            };
-
-            pdfMake.createPdf(docDefinition).download('detalle_pago.pdf');
-        });
-    </script>
+    <script src="assets/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
